@@ -14,6 +14,10 @@ public class Person {
     private String notice;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tbl_person_language",
+            joinColumns = @JoinColumn(name = "person_id", foreignKey = @ForeignKey(name = "person_fk")),
+            inverseJoinColumns = @JoinColumn(name = "language_id", foreignKey = @ForeignKey(name = "language_fk"))
+    )
     private List<Language> languages;
 
     public long getId () {
@@ -50,5 +54,13 @@ public class Person {
 
     public void setNotice (String notice) {
         this.notice = notice;
+    }
+
+    public List<Language> getLanguages () {
+        return languages;
+    }
+
+    public void setLanguages (List<Language> languages) {
+        this.languages = languages;
     }
 }

@@ -23,11 +23,9 @@ public class PersonController {
         return null;
     }
 
-    @GetMapping(value = "/getPersonById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> getPersonById(@PathVariable String id){
-
-        //todo: implement
-        return null;
+        return ResponseEntity.ok(personService.getPersonById(id));
     }
 
     @PostMapping(value = "/addPerson", consumes = MediaType.APPLICATION_JSON_VALUE)
