@@ -3,3 +3,5 @@ spring:
     url: jdbc:mariadb://localhost:3306/223_projekt
     username: root
     password:
+  jpa:
+    show-sql: true

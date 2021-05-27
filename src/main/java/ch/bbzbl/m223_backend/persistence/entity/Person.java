@@ -1,9 +1,7 @@
 package ch.bbzbl.m223_backend.persistence.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "tbl_person")
 public class Person {
@@ -14,6 +12,9 @@ public class Person {
     private String surname;
     private String name;
     private String notice;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Language> languages;
 
     public long getId () {
         return id;
@@ -44,6 +45,10 @@ public class Person {
     }
 
     public void setString (String notice) {
+        this.notice = notice;
+    }
+
+    public void setNotice (String notice) {
         this.notice = notice;
     }
 }
