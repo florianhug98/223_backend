@@ -22,6 +22,10 @@ public class LanguageService {
                 .orElse(null);
     }
 
+    public boolean deleteLanguageById(String id){
+        return languageRepository.deleteLanguageById(Long.valueOf(id)) == 1;
+    }
+
     @Autowired
     public void setLanguageRepository(LanguageRepository languageRepository) {
         this.languageRepository = languageRepository;
