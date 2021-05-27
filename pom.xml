@@ -23,6 +23,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
@@ -51,7 +52,6 @@
             <artifactId>mariadb-java-client</artifactId>
             <version>${mariadb-jdbc-version}</version>
         </dependency>
-
 
     </dependencies>
 

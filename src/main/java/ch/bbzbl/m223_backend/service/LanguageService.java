@@ -1,6 +1,7 @@
 package ch.bbzbl.m223_backend.service;
 
 import ch.bbzbl.m223_backend.core.Response;
+import ch.bbzbl.m223_backend.core.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,21 @@ public class LanguageService {
     public LanguageService(){
     }
 
-    public List<Language> getAllLanguages(){
-        return languageRepository.findAll();
+    public Response<LanguageDTO> getAllLanguages(){
+        List<LanguageDTO> resultList = new ArrayList<>();
+        languageRepository.findAll().forEach(language -> {
+            resultList.add(createDTO(language));
+        });
+        return new Response<>(resultList);
     }
 
-    public Response<Language> getLanguageByID(String id){
-        return null;
-
+    public Response<LanguageDTO> getLanguageByID(String id){
+        List<LanguageDTO> resultList = new ArrayList<>();
+        if (checkForValidId(id)){
+            Language language = languageRepository.getById(Long.valueOf(id));
+            resultList.add(createDTO(language));
+        }
+        return new Response<>(resultList);
     }
 
     public void addLanguage(Language language){
@@ -34,19 +43,27 @@ public class LanguageService {
         }
     }
 
-    public boolean deleteLanguageById(String id){
-        return languageRepository.deleteLanguageById(Long.valueOf(id)) == 1;
+    public Response<Boolean> deleteLanguageById(String id){
+        if (checkForValidId(id)){
+            if (languageRepository.deleteLanguageById(Long.valueOf(id)) == 1){
+                return new Response<>(Boolean.TRUE);
+            }else{
+                return new Response<>("Language with this ID does not exist!");
+            }
+        }
+        return new Response<>("ID has to be a number!");
     }
 
 
 
     //helper
 
-    public Response<Language> createResponse(List<Language> result){
-        if (result == null){
-            return new Response<Language>("No Language with this ID found!");
-        }
-        return new Response<Language>(result);
+    private LanguageDTO createDTO(Language language){
+        return new LanguageDTO(
+                language.getId(),
+                language.getName(),
+                language.getIsoCode()
+        );
     }
 
     private boolean checkForValidLanguageParameter (Language language){
@@ -56,7 +73,9 @@ public class LanguageService {
 
     private boolean checkForValidId(String id){
         String regex = "\\d+";
-        return id.matches(regex);
+        return id != null
+                && !"".equals(id)
+                && id.matches(regex);
     }
 
     @Autowired

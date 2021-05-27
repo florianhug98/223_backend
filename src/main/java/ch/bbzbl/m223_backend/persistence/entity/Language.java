@@ -1,6 +1,9 @@
 package ch.bbzbl.m223_backend.persistence.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity(name = "tbl_language")
 public class Language {
