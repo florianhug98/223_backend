@@ -30,10 +30,10 @@ public class LanguageController {
         return ResponseEntity.ok(languageService.getAllLanguages());
     }
 
-//    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Boolean> addLanguage(@RequestBody Language language){
-//
-//    }
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response<Boolean>> addLanguage(@RequestBody Language language){
+        return ResponseEntity.ok(languageService.addLanguage(language));
+    }
 
     @DeleteMapping(value = "deleteById/{id}")
     public ResponseEntity<Response<Boolean>> deleteLanguageById(@PathVariable String id){

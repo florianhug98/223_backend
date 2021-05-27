@@ -35,11 +35,12 @@ public class LanguageService {
         return new Response<>(resultList);
     }
 
-    public void addLanguage(Language language){
-        if (checkForValidLanguageParameter(language)){
+    public Response<Boolean> addLanguage(Language language){
+        if (validateLanguageParameter(language)){
             languageRepository.save(language);
+            return new Response<>(Boolean.TRUE);
         }else {
-            throw new IllegalArgumentException("Parameters may not be null/empty!");
+            return new Response<>("Parameter must have correct format and not be null/empty!");
         }
     }
 
@@ -66,8 +67,8 @@ public class LanguageService {
         );
     }
 
-    private boolean checkForValidLanguageParameter (Language language){
-        return language.getIsoCode() != null && !"".equals(language.getIsoCode())
+    private boolean validateLanguageParameter(Language language){
+        return language.getIsoCode() != null && !"".equals(language.getIsoCode()) && language.getIsoCode().length() <= 3
                 && language.getName() != null && !"".equals(language.getName());
     }
 
