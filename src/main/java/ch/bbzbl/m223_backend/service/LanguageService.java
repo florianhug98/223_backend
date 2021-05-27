@@ -5,6 +5,7 @@ import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +32,21 @@ public class LanguageService {
                 .orElse(null);
     }
 
+    public void addLanguage(Language language){
+        if (checkForValidAttributes(language)){
+            languageRepository.save(language);
+        }else {
+            throw new IllegalArgumentException("Parameters may not be null");
+        }
+    }
+
     public boolean deleteLanguageById(String id){
         return languageRepository.deleteLanguageById(Long.valueOf(id)) == 1;
+    }
+
+    private boolean checkForValidAttributes(Language language){
+        return language.getIsoCode() != null
+                && language.getName() != null;
     }
 
     @Autowired

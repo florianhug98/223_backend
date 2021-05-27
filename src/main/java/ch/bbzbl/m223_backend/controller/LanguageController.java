@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -27,6 +25,16 @@ public class LanguageController {
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Language>> getAllLanguages(){
         return ResponseEntity.ok(languageService.getAllLanguages());
+    }
+
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> addLanguage(@RequestBody Language language){
+        try{
+            languageService.addLanguage(language);
+            return ResponseEntity.ok(true);
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.ok(false);
+        }
     }
 
     @DeleteMapping(value = "deleteById/{id}")
