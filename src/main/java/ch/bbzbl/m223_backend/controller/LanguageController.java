@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/language")
 public class LanguageController {
@@ -20,6 +22,11 @@ public class LanguageController {
     @GetMapping(value = "/getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Language> getLaguangeById(@PathVariable String id){
         return ResponseEntity.ok(languageService.getLanguageByID(id));
+    }
+
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Language>> getAllLanguages(){
+        return ResponseEntity.ok(languageService.getAllLanguages());
     }
 
     @DeleteMapping(value = "deleteById/{id}")
