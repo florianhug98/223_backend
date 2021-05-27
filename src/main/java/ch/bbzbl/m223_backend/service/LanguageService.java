@@ -23,14 +23,16 @@ public class LanguageService {
         return languages;
     }
 
-    public Language getLanguageByID(String id){
+    public List<Language> getLanguageByID(String id){
+        List<Language> result = new ArrayList<>();
         if (checkForValidId(id)){
-            return languageRepository
+            languageRepository
                     .findById(Long.valueOf(id))
-                    .orElse(null);
+                    .map(result::add);
         }else{
             throw new IllegalArgumentException("ID must be a number!");
         }
+        return result;
     }
 
     public void addLanguage(Language language){

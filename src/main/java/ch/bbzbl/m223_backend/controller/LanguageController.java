@@ -18,7 +18,7 @@ public class LanguageController {
     private LanguageService languageService;
 
     @GetMapping(value = "/getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Language> getLaguangeById(@PathVariable String id){
+    public ResponseEntity<List<Language>> getLaguangeById(@PathVariable String id){
         return ResponseEntity.ok(languageService.getLanguageByID(id));
     }
 
