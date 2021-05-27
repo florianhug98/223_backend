@@ -12,6 +12,10 @@ public class LanguageService {
 
     private LanguageRepository languageRepository;
 
+    public LanguageService(){
+
+    }
+
     public Language getLanguageByID(String id){
         return languageRepository
                 .findById(Long.valueOf(id))
