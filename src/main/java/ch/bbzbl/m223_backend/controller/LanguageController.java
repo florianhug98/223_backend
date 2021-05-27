@@ -27,21 +27,15 @@ public class LanguageController {
         return ResponseEntity.ok(languageService.getAllLanguages());
     }
 
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> addLanguage(@RequestBody Language language){
-        try{
-            languageService.addLanguage(language);
-            return ResponseEntity.ok(true);
-        }catch (IllegalArgumentException e){
-            return ResponseEntity.ok(false);
-        }
-    }
+//    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Boolean> addLanguage(@RequestBody Language language){
+//
+//    }
 
     @DeleteMapping(value = "deleteById/{id}")
     public ResponseEntity<Boolean> deleteLanguageById(@PathVariable String id){
         return ResponseEntity.ok(languageService.deleteLanguageById(id));
     }
-
 
     @Autowired
     public void setLanguageService(LanguageService languageService) {

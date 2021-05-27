@@ -5,10 +5,8 @@ import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LanguageService {
@@ -16,7 +14,6 @@ public class LanguageService {
     private LanguageRepository languageRepository;
 
     public LanguageService(){
-
     }
 
     public List<Language> getAllLanguages(){
@@ -27,26 +24,40 @@ public class LanguageService {
     }
 
     public Language getLanguageByID(String id){
-        return languageRepository
-                .findById(Long.valueOf(id))
-                .orElse(null);
+        if (checkForValidId(id)){
+            return languageRepository
+                    .findById(Long.valueOf(id))
+                    .orElse(null);
+        }else{
+            throw new IllegalArgumentException("ID must be a number!");
+        }
     }
 
     public void addLanguage(Language language){
-        if (checkForValidAttributes(language)){
+        if (checkForValidLanguageParameter(language)){
             languageRepository.save(language);
         }else {
-            throw new IllegalArgumentException("Parameters may not be null");
+            throw new IllegalArgumentException("Parameters may not be null/empty!");
         }
     }
+
+
+
+
+    //helper
 
     public boolean deleteLanguageById(String id){
         return languageRepository.deleteLanguageById(Long.valueOf(id)) == 1;
     }
 
-    private boolean checkForValidAttributes(Language language){
-        return language.getIsoCode() != null
-                && language.getName() != null;
+    private boolean checkForValidLanguageParameter (Language language){
+        return language.getIsoCode() != null && !"".equals(language.getIsoCode())
+                && language.getName() != null && !"".equals(language.getName());
+    }
+
+    private boolean checkForValidId(String id){
+        String regex = "\\d+";
+        return id.matches(regex);
     }
 
     @Autowired
