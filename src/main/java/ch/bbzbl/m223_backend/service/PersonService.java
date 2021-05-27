@@ -9,6 +9,9 @@ public class PersonService {
 
     private PersonRepository personRepository;
 
+    public PersonService(){
+
+    }
 
     @Autowired
     public void setPersonRepository(PersonRepository personRepository) {
