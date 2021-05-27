@@ -1,5 +1,6 @@
 package ch.bbzbl.m223_backend.service;
 
+import ch.bbzbl.m223_backend.core.Response;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +18,12 @@ public class LanguageService {
     }
 
     public List<Language> getAllLanguages(){
-        List<Language> languages = new ArrayList<>();
-        languageRepository.findAll()
-                .forEach(languages::add);
-        return languages;
+        return languageRepository.findAll();
     }
 
-    public List<Language> getLanguageByID(String id){
-        List<Language> result = new ArrayList<>();
-        if (checkForValidId(id)){
-            languageRepository
-                    .findById(Long.valueOf(id))
-                    .map(result::add);
-        }else{
-            throw new IllegalArgumentException("ID must be a number!");
-        }
-        return result;
+    public Response<Language> getLanguageByID(String id){
+        return null;
+
     }
 
     public void addLanguage(Language language){
@@ -43,13 +34,19 @@ public class LanguageService {
         }
     }
 
+    public boolean deleteLanguageById(String id){
+        return languageRepository.deleteLanguageById(Long.valueOf(id)) == 1;
+    }
 
 
 
     //helper
 
-    public boolean deleteLanguageById(String id){
-        return languageRepository.deleteLanguageById(Long.valueOf(id)) == 1;
+    public Response<Language> createResponse(List<Language> result){
+        if (result == null){
+            return new Response<Language>("No Language with this ID found!");
+        }
+        return new Response<Language>(result);
     }
 
     private boolean checkForValidLanguageParameter (Language language){

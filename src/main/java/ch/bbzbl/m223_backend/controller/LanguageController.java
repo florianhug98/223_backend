@@ -1,5 +1,6 @@
 package ch.bbzbl.m223_backend.controller;
 
+import ch.bbzbl.m223_backend.core.Response;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,14 @@ public class LanguageController {
     private LanguageService languageService;
 
     @GetMapping(value = "/getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Language>> getLaguangeById(@PathVariable String id){
+    public ResponseEntity<Response<Language>> getLaguangeById(@PathVariable String id){
         return ResponseEntity.ok(languageService.getLanguageByID(id));
     }
 
-    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Language>> getAllLanguages(){
-        return ResponseEntity.ok(languageService.getAllLanguages());
-    }
+//    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<List<Language>> getAllLanguages(){
+//        return ResponseEntity.ok(languageService.getAllLanguages());
+//    }
 
 //    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
 //    public ResponseEntity<Boolean> addLanguage(@RequestBody Language language){
