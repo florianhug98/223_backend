@@ -32,19 +32,27 @@ public class LanguageService {
     public Response<LanguageDTO> getLanguageByID(String id){
         List<LanguageDTO> resultList = new ArrayList<>();
         if (Helper.validateID(id)){
-            Language language = languageRepository.getById(Long.valueOf(id));
-            resultList.add(createDTO(language));
+            languageRepository.findById(Long.valueOf(id))
+                    .map(language -> resultList.add(createDTO(language)));
         }
         return new Response<>(resultList);
     }
 
-    public Response<Boolean> addLanguage(Language language){
-        if (validateLanguageParameter(language)){
-            languageRepository.save(language);
+    public Response<Boolean> addLanguage(LanguageDTO languageDTO){
+        if (validateLanguageParameter(languageDTO)){
+            languageRepository.save(createEntity(languageDTO));
             return new Response<>(Boolean.TRUE);
         }else {
             return new Response<>("Parameter must have correct format and not be null/empty!");
         }
+    }
+
+    public Response<Boolean> updateLanguageById(LanguageDTO language){
+        if (!this.getLanguageByID(String.valueOf(language.getId())).getResult().isEmpty()){
+            languageRepository.save(createEntity(language));
+            return new Response<>(Boolean.TRUE);
+        }
+        return new Response<>("Entity whith this ID not found!");
     }
 
     public Response<Boolean> deleteLanguageById(String id){
@@ -66,9 +74,13 @@ public class LanguageService {
         return mapper.map(language, LanguageDTO.class);
     }
 
-    private boolean validateLanguageParameter(Language language){
-        return language.getIsoCode() != null && !"".equals(language.getIsoCode()) && language.getIsoCode().length() <= 3
-                && language.getName() != null && !"".equals(language.getName());
+    private Language createEntity(LanguageDTO languageDTO){
+        return mapper.map(languageDTO, Language.class);
+    }
+
+    private boolean validateLanguageParameter(LanguageDTO languageDTO){
+        return languageDTO.getIsoCode() != null && !"".equals(languageDTO.getIsoCode()) && languageDTO.getIsoCode().length() <= 3
+                && languageDTO.getName() != null && !"".equals(languageDTO.getName());
     }
 
     @Autowired

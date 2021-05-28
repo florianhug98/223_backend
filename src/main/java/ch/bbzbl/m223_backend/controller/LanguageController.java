@@ -2,7 +2,6 @@ package ch.bbzbl.m223_backend.controller;
 
 import ch.bbzbl.m223_backend.core.http.Response;
 import ch.bbzbl.m223_backend.core.dto.LanguageDTO;
-import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,8 +26,13 @@ public class LanguageController {
     }
 
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<Boolean>> addLanguage(@RequestBody Language language){
-        return ResponseEntity.ok(languageService.addLanguage(language));
+    public ResponseEntity<Response<Boolean>> addLanguage(@RequestBody LanguageDTO languageDTO){
+        return ResponseEntity.ok(languageService.addLanguage(languageDTO));
+    }
+
+    @PutMapping(value = "/update")
+    public ResponseEntity<Response<Boolean>> updateLanguage(@RequestBody LanguageDTO languageDTO){
+        return ResponseEntity.ok(languageService.updateLanguageById(languageDTO));
     }
 
     @DeleteMapping(value = "deleteById/{id}")

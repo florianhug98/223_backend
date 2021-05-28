@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 
 @Repository
-public interface LanguageRepository extends JpaRepository<Language, Long> {
+public interface LanguageRepository extends CrudRepository<Language, Long> {
 
     @Modifying
     @Transactional
