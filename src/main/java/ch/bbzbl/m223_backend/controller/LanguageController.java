@@ -1,18 +1,14 @@
 package ch.bbzbl.m223_backend.controller;
 
-import ch.bbzbl.m223_backend.core.Response;
+import ch.bbzbl.m223_backend.core.http.Response;
 import ch.bbzbl.m223_backend.core.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.SQLException;
-import java.util.List;
 
 @Controller
 @RequestMapping("/language")

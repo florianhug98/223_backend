@@ -1,4 +1,4 @@
-package ch.bbzbl.m223_backend.core;
+package ch.bbzbl.m223_backend.core.http;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

@@ -1,6 +1,7 @@
 package ch.bbzbl.m223_backend.service;
 
-import ch.bbzbl.m223_backend.core.Response;
+import ch.bbzbl.m223_backend.core.Helper;
+import ch.bbzbl.m223_backend.core.http.Response;
 import ch.bbzbl.m223_backend.core.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
@@ -28,7 +29,7 @@ public class LanguageService {
 
     public Response<LanguageDTO> getLanguageByID(String id){
         List<LanguageDTO> resultList = new ArrayList<>();
-        if (checkForValidId(id)){
+        if (Helper.validateID(id)){
             Language language = languageRepository.getById(Long.valueOf(id));
             resultList.add(createDTO(language));
         }
@@ -45,7 +46,7 @@ public class LanguageService {
     }
 
     public Response<Boolean> deleteLanguageById(String id){
-        if (checkForValidId(id)){
+        if (Helper.validateID(id)){
             if (languageRepository.deleteLanguageById(Long.valueOf(id)) == 1){
                 return new Response<>(Boolean.TRUE);
             }else{
@@ -70,13 +71,6 @@ public class LanguageService {
     private boolean validateLanguageParameter(Language language){
         return language.getIsoCode() != null && !"".equals(language.getIsoCode()) && language.getIsoCode().length() <= 3
                 && language.getName() != null && !"".equals(language.getName());
-    }
-
-    private boolean checkForValidId(String id){
-        String regex = "\\d+";
-        return id != null
-                && !"".equals(id)
-                && id.matches(regex);
     }
 
     @Autowired
