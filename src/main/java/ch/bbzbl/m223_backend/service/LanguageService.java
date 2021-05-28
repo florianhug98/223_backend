@@ -5,6 +5,7 @@ import ch.bbzbl.m223_backend.core.http.Response;
 import ch.bbzbl.m223_backend.core.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class LanguageService {
 
     private LanguageRepository languageRepository;
+    private final ModelMapper mapper = new ModelMapper();
 
     public LanguageService(){
     }
@@ -61,11 +63,7 @@ public class LanguageService {
     //helper
 
     private LanguageDTO createDTO(Language language){
-        return new LanguageDTO(
-                language.getId(),
-                language.getName(),
-                language.getIsoCode()
-        );
+        return mapper.map(language, LanguageDTO.class);
     }
 
     private boolean validateLanguageParameter(Language language){

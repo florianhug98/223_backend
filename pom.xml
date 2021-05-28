@@ -20,6 +20,7 @@
         <spring-boot-test-version>2.5.0</spring-boot-test-version>
         <spring-boot-web-version>2.5.0</spring-boot-web-version>
         <mariadb-jdbc-version>2.7.3</mariadb-jdbc-version>
+        <modell-mapper-version>2.4.4</modell-mapper-version>
     </properties>
 
     <dependencies>
@@ -52,6 +53,13 @@
             <artifactId>mariadb-java-client</artifactId>
             <version>${mariadb-jdbc-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${modell-mapper-version}</version>
+        </dependency>
+
 
     </dependencies>
 

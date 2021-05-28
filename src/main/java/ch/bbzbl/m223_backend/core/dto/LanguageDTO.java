@@ -6,6 +6,9 @@ public class LanguageDTO {
     private String name;
     private String isoCode;
 
+    public LanguageDTO(){
+    }
+
     public LanguageDTO(long id, String name, String isoCode) {
         this.id = id;
         this.name = name;
