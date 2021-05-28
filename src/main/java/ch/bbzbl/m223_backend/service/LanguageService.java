@@ -1,11 +1,9 @@
 package ch.bbzbl.m223_backend.service;
 
-import ch.bbzbl.m223_backend.core.helper.Validator;
 import ch.bbzbl.m223_backend.core.http.Response;
 import ch.bbzbl.m223_backend.core.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +28,7 @@ public class LanguageService extends AbstractService{
 
     public Response<LanguageDTO> getLanguageByID(String id){
         List<LanguageDTO> resultList = new ArrayList<>();
-        if (Validator.validateID(id)){
+        if (super.validateId(id)){
             languageRepository.findById(Long.parseLong(id))
                     .map(language -> resultList.add(super.map(language, LanguageDTO.class)));
         }
@@ -55,7 +53,7 @@ public class LanguageService extends AbstractService{
     }
 
     public Response<Boolean> deleteLanguageById(String id){
-        if (Validator.validateID(id)){
+        if (super.validateId(id)){
             if (languageRepository.deleteLanguageById(Long.parseLong(id)) == 1){
                 return new Response<>(Boolean.TRUE);
             }else{

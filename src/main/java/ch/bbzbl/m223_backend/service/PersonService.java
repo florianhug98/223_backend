@@ -1,9 +1,7 @@
 package ch.bbzbl.m223_backend.service;
 
 import ch.bbzbl.m223_backend.core.dto.PersonDTO;
-import ch.bbzbl.m223_backend.core.helper.Validator;
 import ch.bbzbl.m223_backend.core.http.Response;
-import ch.bbzbl.m223_backend.persistence.entity.Person;
 import ch.bbzbl.m223_backend.persistence.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +26,7 @@ public class PersonService extends AbstractService{
 
     public Response<PersonDTO> getPersonById(String id){
         List<PersonDTO> resultList = new ArrayList<>();
-        if (Validator.validateID(id)){
+        if (super.validateId(id)){
             personRepository.findById(Long.parseLong(id))
                     .map(person -> resultList.add(super.map(person, PersonDTO.class)));
         }
@@ -36,7 +34,7 @@ public class PersonService extends AbstractService{
     }
 
     public Response<Boolean> deletePersonById(String id){
-        if (Validator.validateID(id)){
+        if (super.validateId(id)){
             if (personRepository.deletePersonById(Long.parseLong(id)) == 1){
                 return new Response<>(Boolean.TRUE);
             }else{

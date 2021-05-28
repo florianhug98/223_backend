@@ -9,4 +9,11 @@ public abstract class AbstractService {
     protected <D> D map(Object source, Class<D> destination){
         return this.mapper.map(source, destination);
     }
+
+    protected boolean validateId (String id){
+        String regex = "\\d+";
+        return id != null
+                && !"".equals(id)
+                && id.matches(regex);
+    }
 }
