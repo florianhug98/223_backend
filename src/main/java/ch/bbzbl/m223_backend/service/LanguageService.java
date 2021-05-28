@@ -31,7 +31,7 @@ public class LanguageService extends AbstractService{
     public Response<LanguageDTO> getLanguageByID(String id){
         List<LanguageDTO> resultList = new ArrayList<>();
         if (Validator.validateID(id)){
-            languageRepository.findById(Long.valueOf(id))
+            languageRepository.findById(Long.parseLong(id))
                     .map(language -> resultList.add(super.map(language, LanguageDTO.class)));
         }
         return new Response<>(resultList);
@@ -56,7 +56,7 @@ public class LanguageService extends AbstractService{
 
     public Response<Boolean> deleteLanguageById(String id){
         if (Validator.validateID(id)){
-            if (languageRepository.deleteLanguageById(Long.valueOf(id)) == 1){
+            if (languageRepository.deleteLanguageById(Long.parseLong(id)) == 1){
                 return new Response<>(Boolean.TRUE);
             }else{
                 return new Response<>("Language with this ID does not exist!");

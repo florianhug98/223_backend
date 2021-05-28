@@ -1,5 +1,7 @@
 package ch.bbzbl.m223_backend.controller;
 
+import ch.bbzbl.m223_backend.core.dto.PersonDTO;
+import ch.bbzbl.m223_backend.core.http.Response;
 import ch.bbzbl.m223_backend.persistence.entity.Person;
 import ch.bbzbl.m223_backend.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,12 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Person>> getAllPersons(){
-
-        //todo: implement
-        return null;
+    public ResponseEntity<Response<PersonDTO>> getAllPersons(){
+        return ResponseEntity.ok(personService.getAll());
     }
 
     @GetMapping(value = "/getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> getPersonById(@PathVariable String id){
+    public ResponseEntity<Response<PersonDTO>> getPersonById(@PathVariable String id){
         return ResponseEntity.ok(personService.getPersonById(id));
     }
 
@@ -35,7 +35,7 @@ public class PersonController {
         return null;
     }
 
-    @PostMapping(value = "/editPerson", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/editPerson", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> editPerson(@RequestBody Person person){
 
         //todo:implement
@@ -43,10 +43,8 @@ public class PersonController {
     }
 
     @DeleteMapping("/deletePersonById/{id}")
-    public ResponseEntity<Boolean> deletePersonById(@PathVariable String id){
-
-        //todo: implement
-        return null;
+    public ResponseEntity<Response<Boolean>> deletePersonById(@PathVariable String id){
+        return ResponseEntity.ok(personService.deletePersonById(id));
     }
 
     @Autowired
