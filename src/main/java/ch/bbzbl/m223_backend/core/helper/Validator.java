@@ -1,8 +1,8 @@
-package ch.bbzbl.m223_backend.core;
+package ch.bbzbl.m223_backend.core.helper;
 
-public class Helper {
+public class Validator {
 
-    private Helper (){
+    private Validator (){
     }
 
     public static boolean validateID(String id){
