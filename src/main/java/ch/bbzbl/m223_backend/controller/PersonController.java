@@ -18,31 +18,38 @@ public class PersonController {
 
     private PersonService personService;
 
-    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<PersonDTO>> getAllPersons(){
         return ResponseEntity.ok(personService.getAll());
     }
 
-    @GetMapping(value = "/getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getById/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<PersonDTO>> getPersonById(@PathVariable String id){
         return ResponseEntity.ok(personService.getPersonById(id));
     }
 
-    @PostMapping(value = "/addPerson", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/addPerson",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> addPerson(@RequestBody Person person){
 
         //todo: implement
         return null;
     }
 
-    @PutMapping(value = "/editPerson", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/editPerson",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> editPerson(@RequestBody Person person){
 
         //todo:implement
         return null;
     }
 
-    @DeleteMapping("/deletePersonById/{id}")
+    @DeleteMapping(value = "/deletePersonById/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<Boolean>> deletePersonById(@PathVariable String id){
         return ResponseEntity.ok(personService.deletePersonById(id));
     }
