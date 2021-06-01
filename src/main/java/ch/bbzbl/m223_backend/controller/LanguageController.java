@@ -35,14 +35,14 @@ public class LanguageController {
         return ResponseEntity.ok(languageService.addLanguage(languageDTO));
     }
 
-    @PutMapping(value = "/update",
+    @PutMapping(value = "/edit",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<Boolean>> updateLanguage(@RequestBody LanguageDTO languageDTO){
         return ResponseEntity.ok(languageService.updateLanguageById(languageDTO));
     }
 
-    @DeleteMapping(value = "deleteById/{id}",
+    @DeleteMapping(value = "/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<Boolean>> deleteLanguageById(@PathVariable String id){
         return ResponseEntity.ok(languageService.deleteLanguageById(id));

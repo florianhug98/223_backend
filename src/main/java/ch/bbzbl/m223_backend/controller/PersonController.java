@@ -29,7 +29,7 @@ public class PersonController {
         return ResponseEntity.ok(personService.getPersonById(id));
     }
 
-    @PostMapping(value = "/addPerson",
+    @PostMapping(value = "/add",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> addPerson(@RequestBody Person person){
@@ -38,7 +38,7 @@ public class PersonController {
         return null;
     }
 
-    @PutMapping(value = "/editPerson",
+    @PutMapping(value = "/edit",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> editPerson(@RequestBody Person person){
@@ -47,7 +47,7 @@ public class PersonController {
         return null;
     }
 
-    @DeleteMapping(value = "/deletePersonById/{id}",
+    @DeleteMapping(value = "/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<Boolean>> deletePersonById(@PathVariable String id){
         return ResponseEntity.ok(personService.deletePersonById(id));
