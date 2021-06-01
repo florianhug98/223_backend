@@ -1,7 +1,7 @@
 package ch.bbzbl.m223_backend.controller;
 
-import ch.bbzbl.m223_backend.core.http.Response;
-import ch.bbzbl.m223_backend.core.dto.LanguageDTO;
+import ch.bbzbl.m223_backend.shared.http.Response;
+import ch.bbzbl.m223_backend.shared.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

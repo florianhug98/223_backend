@@ -1,11 +1,10 @@
 package ch.bbzbl.m223_backend.service;
 
-import ch.bbzbl.m223_backend.core.helper.Validator;
-import ch.bbzbl.m223_backend.core.http.Response;
-import ch.bbzbl.m223_backend.core.dto.LanguageDTO;
+import ch.bbzbl.m223_backend.shared.helper.Validator;
+import ch.bbzbl.m223_backend.shared.http.Response;
+import ch.bbzbl.m223_backend.shared.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

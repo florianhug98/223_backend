@@ -1,4 +1,4 @@
-package ch.bbzbl.m223_backend.core.helper;
+package ch.bbzbl.m223_backend.shared.helper;
 
 public class Validator {
 

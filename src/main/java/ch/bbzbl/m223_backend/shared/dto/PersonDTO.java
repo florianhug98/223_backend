@@ -1,4 +1,4 @@
-package ch.bbzbl.m223_backend.core.dto;
+package ch.bbzbl.m223_backend.shared.dto;
 
 import java.util.List;
 
