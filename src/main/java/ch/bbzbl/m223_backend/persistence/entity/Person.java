@@ -20,6 +20,9 @@ public class Person {
     )
     private List<Language> languages;
 
+    @Version
+    private Long version;
+
     public long getId () {
         return id;
     }
@@ -62,5 +65,13 @@ public class Person {
 
     public void setLanguages (List<Language> languages) {
         this.languages = languages;
+    }
+
+    public Long getVersion () {
+        return version;
+    }
+
+    public void setVersion (Long version) {
+        this.version = version;
     }
 }

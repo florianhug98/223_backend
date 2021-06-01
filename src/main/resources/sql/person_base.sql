@@ -3,29 +3,34 @@ CREATE TABLE IF NOT EXISTS tbl_person(
     surname varchar(20) not null,
     name varchar(30) not null,
     notice text,
+    version bigint not null,
     PRIMARY KEY (id)
 );
 
-INSERT INTO tbl_person (surname, name, notice) VALUES (
-                                                       'Florian',
-                                                       'Hug',
-                                                       ''
+INSERT INTO tbl_person (surname, name, notice, version) VALUES (
+                                                                'Florian',
+                                                                'Hug',
+                                                                '',
+                                                                0
                                                       );
 
-INSERT INTO tbl_person (surname, name, notice) VALUES (
-                                                          'Fabio',
-                                                          'Kaufmann',
-                                                          ''
+INSERT INTO tbl_person (surname, name, notice, version) VALUES (
+                                                       'Fabio',
+                                                       'Kaufmann',
+                                                       '',
+                                                       0
                                                       );
 
-INSERT INTO tbl_person (surname, name, notice) VALUES (
-                                                          'Jan',
-                                                          'van Antwerpen',
-                                                          ''
+INSERT INTO tbl_person (surname, name, notice, version) VALUES (
+                                                       'Jan',
+                                                       'van Antwerpen',
+                                                       '',
+                                                       0
                                                       );
 
-INSERT INTO tbl_person (surname, name, notice) VALUES (
-                                                          'Matus',
-                                                          'Blasko',
-                                                          ''
+INSERT INTO tbl_person (surname, name, notice, version) VALUES (
+                                                       'Matus',
+                                                       'Blasko',
+                                                       '',
+                                                       0
                                                       );

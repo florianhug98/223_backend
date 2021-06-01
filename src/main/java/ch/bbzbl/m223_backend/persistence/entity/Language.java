@@ -16,6 +16,9 @@ public class Language {
     @Column(name = "iso_code")
     private String isoCode;
 
+    @Version
+    private long version;
+
     public long getId () {
         return id;
     }
@@ -38,5 +41,13 @@ public class Language {
 
     public void setIsoCode (String isoCode) {
         this.isoCode = isoCode;
+    }
+
+    public long getVersion () {
+        return version;
+    }
+
+    public void setVersion (long version) {
+        this.version = version;
     }
 }
