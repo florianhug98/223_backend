@@ -1,10 +1,11 @@
-package ch.bbzbl.m223_backend.core.dto;
+package ch.bbzbl.m223_backend.shared.dto;
 
 public class LanguageDTO {
 
     private long id;
     private String name;
     private String isoCode;
+    private long version;
 
     public LanguageDTO(){
     }
@@ -37,5 +38,14 @@ public class LanguageDTO {
 
     public void setIsoCode(String isoCode) {
         this.isoCode = isoCode;
+    }
+
+    public long getVersion () {
+
+        return version;
+    }
+
+    public void setVersion (long version) {
+        this.version = version;
     }
 }

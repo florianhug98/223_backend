@@ -1,10 +1,6 @@
-package ch.bbzbl.m223_backend.core.http;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+package ch.bbzbl.m223_backend.shared.http;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

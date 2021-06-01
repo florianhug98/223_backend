@@ -1,9 +1,8 @@
 package ch.bbzbl.m223_backend.service;
 
-import ch.bbzbl.m223_backend.core.dto.PersonDTO;
-import ch.bbzbl.m223_backend.core.helper.Validator;
-import ch.bbzbl.m223_backend.core.http.Response;
-import ch.bbzbl.m223_backend.persistence.entity.Person;
+import ch.bbzbl.m223_backend.shared.dto.PersonDTO;
+import ch.bbzbl.m223_backend.shared.helper.Validator;
+import ch.bbzbl.m223_backend.shared.http.Response;
 import ch.bbzbl.m223_backend.persistence.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

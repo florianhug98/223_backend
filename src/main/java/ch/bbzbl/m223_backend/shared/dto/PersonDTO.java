@@ -1,4 +1,4 @@
-package ch.bbzbl.m223_backend.core.dto;
+package ch.bbzbl.m223_backend.shared.dto;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ public class PersonDTO {
     private String name;
     private String notice;
     private List<LanguageDTO> languages;
+    private long version;
 
     public long getId () {
         return id;
@@ -48,5 +49,13 @@ public class PersonDTO {
 
     public void setLanguages (List<LanguageDTO> languages) {
         this.languages = languages;
+    }
+
+    public long getVersion () {
+        return version;
+    }
+
+    public void setVersion (long version) {
+        this.version = version;
     }
 }
