@@ -2,6 +2,7 @@ package ch.bbzbl.m223_backend.service;
 
 import ch.bbzbl.m223_backend.shared.dto.PersonDTO;
 import ch.bbzbl.m223_backend.shared.helper.Validator;
+import ch.bbzbl.m223_backend.shared.http.ErrorMessages;
 import ch.bbzbl.m223_backend.shared.http.Response;
 import ch.bbzbl.m223_backend.persistence.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,10 @@ public class PersonService extends AbstractService{
             if (personRepository.deletePersonById(Long.parseLong(id)) == 1){
                 return new Response<>(Boolean.TRUE);
             }else{
-                return new Response<>("Person whith this ID does not exist!");
+                return new Response<>(ErrorMessages.ENTITY_NOT_FOUND);
             }
         }else {
-            return new Response<>("ID has to be a number!");
+            return new Response<>(ErrorMessages.ID_INVALID);
         }
     }
 
