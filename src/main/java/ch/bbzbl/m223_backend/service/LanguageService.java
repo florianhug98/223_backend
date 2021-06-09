@@ -1,6 +1,7 @@
 package ch.bbzbl.m223_backend.service;
 
 import ch.bbzbl.m223_backend.shared.helper.Validator;
+import ch.bbzbl.m223_backend.shared.http.ErrorMessages;
 import ch.bbzbl.m223_backend.shared.http.Response;
 import ch.bbzbl.m223_backend.shared.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
@@ -41,7 +42,7 @@ public class LanguageService extends AbstractService{
             languageRepository.save(super.map(languageDTO, Language.class));
             return new Response<>(Boolean.TRUE);
         }else {
-            return new Response<>("Parameter must have correct format and not be null/empty!");
+            return new Response<>(ErrorMessages.PARAMETER_INVALID);
         }
     }
 
@@ -50,7 +51,7 @@ public class LanguageService extends AbstractService{
             languageRepository.save(super.map(languageDTO, Language.class));
             return new Response<>(Boolean.TRUE);
         }
-        return new Response<>("Entity whith this ID not found!");
+        return new Response<>(ErrorMessages.ENTITY_NOT_FOUND);
     }
 
     public Response<Boolean> deleteLanguageById(String id){
@@ -58,10 +59,10 @@ public class LanguageService extends AbstractService{
             if (languageRepository.deleteLanguageById(Long.parseLong(id)) == 1){
                 return new Response<>(Boolean.TRUE);
             }else{
-                return new Response<>("Language with this ID does not exist!");
+                return new Response<>(ErrorMessages.ENTITY_NOT_FOUND);
             }
         }
-        return new Response<>("ID has to be a number!");
+        return new Response<>(ErrorMessages.ID_INVALID);
     }
 
 
