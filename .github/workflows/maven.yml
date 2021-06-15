@@ -36,5 +36,6 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: ${{steps.time.outputs.time}}
+        prerelease: false
         title: "223-Backend"
         files: "target/*.jar"
