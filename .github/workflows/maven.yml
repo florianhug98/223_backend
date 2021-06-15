@@ -37,5 +37,4 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: ${{steps.time.outputs.time}}
         prerelease: true
-        title: "Development Build"
         files: "target/*.jar"
