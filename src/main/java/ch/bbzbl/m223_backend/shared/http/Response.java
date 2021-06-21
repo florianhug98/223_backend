@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Response<t> implements Serializable {
 
-    private List<t> result;
-    private String errorMessage;
+    private final List<t> result;
+    private final String errorMessage;
 
     private Response(List<t> result, String errorMessage){
         this.result = result;
