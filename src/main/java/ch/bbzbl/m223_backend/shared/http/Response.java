@@ -1,6 +1,7 @@
 package ch.bbzbl.m223_backend.shared.http;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class Response<t> implements Serializable {
     }
 
     public Response (String errorMessage){
-        this(null, errorMessage);
+        this(new ArrayList<>(), errorMessage);
     }
 
     public List<t> getResult() {

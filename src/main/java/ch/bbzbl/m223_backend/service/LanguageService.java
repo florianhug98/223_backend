@@ -6,7 +6,9 @@ import ch.bbzbl.m223_backend.shared.http.Response;
 import ch.bbzbl.m223_backend.shared.dto.LanguageDTO;
 import ch.bbzbl.m223_backend.persistence.entity.Language;
 import ch.bbzbl.m223_backend.persistence.repository.LanguageRepository;
+import org.hibernate.StaleObjectStateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,8 +50,16 @@ public class LanguageService extends AbstractService{
 
     public Response<Boolean> updateLanguageById(LanguageDTO languageDTO){
         if (!this.getLanguageByID(String.valueOf(languageDTO.getId())).getResult().isEmpty()){
-            languageRepository.save(super.map(languageDTO, Language.class));
-            return new Response<>(Boolean.TRUE);
+            if (validateLanguageParameter(languageDTO)){
+                try{
+                    languageRepository.save(super.map(languageDTO, Language.class));
+                    return new Response<>(Boolean.TRUE);
+                }catch (ObjectOptimisticLockingFailureException e){
+                    return new Response<>(ErrorMessages.OLD_VERSION_USED);
+                }
+            }else {
+             return new Response<>(ErrorMessages.PARAMETER_INVALID);
+            }
         }
         return new Response<>(ErrorMessages.ENTITY_NOT_FOUND);
     }
@@ -65,13 +75,11 @@ public class LanguageService extends AbstractService{
         return new Response<>(ErrorMessages.ID_INVALID);
     }
 
-
-
     //helper
 
     private boolean validateLanguageParameter(LanguageDTO languageDTO){
-        return languageDTO.getIsoCode() != null && !"".equals(languageDTO.getIsoCode()) && languageDTO.getIsoCode().length() <= 3
-                && languageDTO.getName() != null && !"".equals(languageDTO.getName());
+        return languageDTO.getIsoCode() != null && languageDTO.getIsoCode().length() >= 2 && languageDTO.getIsoCode().length() <= 3
+               && languageDTO.getName() != null && !"".equals(languageDTO.getName());
     }
 
     @Autowired

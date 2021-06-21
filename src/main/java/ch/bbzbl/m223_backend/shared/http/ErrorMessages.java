@@ -5,7 +5,8 @@ public class ErrorMessages {
     private ErrorMessages () {}
 
     public static final String ID_INVALID = "ID must be a number";
-    public static final String ENTITY_NOT_FOUND = "Entity with this ID has not been found";
+    public static final String ENTITY_NOT_FOUND = "Entity with this ID (or version) has not been found";
     public static final String PARAMETER_INVALID = "Parameter must have correct format and not be null/empty!";
+    public static final String OLD_VERSION_USED = "There is a newer version of this entity available";
 
 }
