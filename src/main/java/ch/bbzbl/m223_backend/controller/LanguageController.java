@@ -19,33 +19,33 @@ public class LanguageController {
     @GetMapping(value = "/getById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<LanguageDTO>> getLanguageById(@PathVariable String id){
-        return ResponseEntity.ok(languageService.getLanguageByID(id));
+        return ResponseEntity.ok(this.languageService.getById(id));
     }
 
     @GetMapping(value = "/getAll",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<LanguageDTO>> getAllLanguages(){
-        return ResponseEntity.ok(languageService.getAllLanguages());
+        return ResponseEntity.ok(this.languageService.getAll());
     }
 
     @PostMapping(value = "/add",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<Boolean>> addLanguage(@RequestBody LanguageDTO languageDTO){
-        return ResponseEntity.ok(languageService.addLanguage(languageDTO));
+        return ResponseEntity.ok(this.languageService.add(languageDTO));
     }
 
     @PutMapping(value = "/edit",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<Boolean>> updateLanguage(@RequestBody LanguageDTO languageDTO){
-        return ResponseEntity.ok(languageService.updateLanguageById(languageDTO));
+        return ResponseEntity.ok(this.languageService.edit(languageDTO));
     }
 
     @DeleteMapping(value = "/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<Boolean>> deleteLanguageById(@PathVariable String id){
-        return ResponseEntity.ok(languageService.deleteLanguageById(id));
+        return ResponseEntity.ok(this.languageService.delete(id));
     }
 
     @Autowired

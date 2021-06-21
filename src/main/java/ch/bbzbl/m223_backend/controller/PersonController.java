@@ -20,37 +20,33 @@ public class PersonController {
     @GetMapping(value = "/getAll",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<PersonDTO>> getAllPersons(){
-        return ResponseEntity.ok(personService.getAll());
+        return ResponseEntity.ok(this.personService.getAll());
     }
 
     @GetMapping(value = "/getById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<PersonDTO>> getPersonById(@PathVariable String id){
-        return ResponseEntity.ok(personService.getPersonById(id));
+        return ResponseEntity.ok(this.personService.getById(id));
     }
 
     @PostMapping(value = "/add",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> addPerson(@RequestBody Person person){
-
-        //todo: implement
-        return null;
+    public ResponseEntity<Response<Boolean>> addPerson(@RequestBody PersonDTO personDTO){
+        return ResponseEntity.ok(this.personService.add(personDTO));
     }
 
     @PutMapping(value = "/edit",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> editPerson(@RequestBody Person person){
-
-        //todo:implement
-        return null;
+    public ResponseEntity<Response<Boolean>> editPerson(@RequestBody PersonDTO personDTO){
+        return ResponseEntity.ok(this.personService.edit(personDTO));
     }
 
     @DeleteMapping(value = "/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response<Boolean>> deletePersonById(@PathVariable String id){
-        return ResponseEntity.ok(personService.deletePersonById(id));
+        return ResponseEntity.ok(this.personService.delete(id));
     }
 
     @Autowired
