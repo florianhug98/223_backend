@@ -39,7 +39,7 @@ public class PersonService extends AbstractService{
         return new Response<>(resultList);
     }
 
-    public Response<Boolean> delete (String id){
+    public Response<Boolean> deleteById (String id){
         if (Validator.validateID(id)){
             if (this.personRepository.deletePersonById(Long.parseLong(id)) == 1){
                 return new Response<>(Boolean.TRUE);
@@ -51,7 +51,7 @@ public class PersonService extends AbstractService{
         }
     }
 
-    public Response<Boolean> edit (PersonDTO personDTO){
+    public Response<Boolean> edit(PersonDTO personDTO){
         if (!this.getById(String.valueOf(personDTO.getId())).getResult().isEmpty()){
             if (validatePersonParameter(personDTO)){
                 try{

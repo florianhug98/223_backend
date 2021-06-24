@@ -1,6 +1,5 @@
 package ch.bbzbl.m223_backend.http;
 
-import ch.bbzbl.m223_backend.shared.dto.PersonDTO;
 import ch.bbzbl.m223_backend.shared.http.Response;
 import org.junit.jupiter.api.Test;
 

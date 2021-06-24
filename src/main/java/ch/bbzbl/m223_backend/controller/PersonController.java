@@ -2,7 +2,6 @@ package ch.bbzbl.m223_backend.controller;
 
 import ch.bbzbl.m223_backend.shared.dto.PersonDTO;
 import ch.bbzbl.m223_backend.shared.http.Response;
-import ch.bbzbl.m223_backend.persistence.entity.Person;
 import ch.bbzbl.m223_backend.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,34 +18,34 @@ public class PersonController {
 
     @GetMapping(value = "/getAll",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<PersonDTO>> getAllPersons(){
+    public ResponseEntity<Response<PersonDTO>> getAll(){
         return ResponseEntity.ok(this.personService.getAll());
     }
 
     @GetMapping(value = "/getById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<PersonDTO>> getPersonById(@PathVariable String id){
+    public ResponseEntity<Response<PersonDTO>> getById(@PathVariable String id){
         return ResponseEntity.ok(this.personService.getById(id));
     }
 
     @PostMapping(value = "/add",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<Boolean>> addPerson(@RequestBody PersonDTO personDTO){
+    public ResponseEntity<Response<Boolean>> add(@RequestBody PersonDTO personDTO){
         return ResponseEntity.ok(this.personService.add(personDTO));
     }
 
     @PutMapping(value = "/edit",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<Boolean>> editPerson(@RequestBody PersonDTO personDTO){
+    public ResponseEntity<Response<Boolean>> edit(@RequestBody PersonDTO personDTO){
         return ResponseEntity.ok(this.personService.edit(personDTO));
     }
 
     @DeleteMapping(value = "/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<Boolean>> deletePersonById(@PathVariable String id){
-        return ResponseEntity.ok(this.personService.delete(id));
+    public ResponseEntity<Response<Boolean>> deleteById(@PathVariable String id){
+        return ResponseEntity.ok(this.personService.deleteById(id));
     }
 
     @Autowired

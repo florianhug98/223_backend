@@ -21,7 +21,7 @@ public class LanguageService extends AbstractService{
     public LanguageService(){
     }
 
-    public Response<LanguageDTO> getAll (){
+    public Response<LanguageDTO> getAll(){
         List<LanguageDTO> resultList = new ArrayList<>();
         this.languageRepository.findAll().forEach(language -> {
             resultList.add(super.map(language, LanguageDTO.class));
@@ -29,7 +29,7 @@ public class LanguageService extends AbstractService{
         return new Response<>(resultList);
     }
 
-    public Response<LanguageDTO> getById (String id){
+    public Response<LanguageDTO> getById(String id){
         List<LanguageDTO> resultList = new ArrayList<>();
         if (Validator.validateID(id)){
             this.languageRepository.findById(Long.parseLong(id))
@@ -38,7 +38,7 @@ public class LanguageService extends AbstractService{
         return new Response<>(resultList);
     }
 
-    public Response<Boolean> add (LanguageDTO languageDTO){
+    public Response<Boolean> add(LanguageDTO languageDTO){
         if (validateLanguageParameter(languageDTO)){
             this.languageRepository.save(super.map(languageDTO, Language.class));
             return new Response<>(Boolean.TRUE);
@@ -47,7 +47,7 @@ public class LanguageService extends AbstractService{
         }
     }
 
-    public Response<Boolean> edit (LanguageDTO languageDTO){
+    public Response<Boolean> edit(LanguageDTO languageDTO){
         if (!this.getById(String.valueOf(languageDTO.getId())).getResult().isEmpty()){
             if (validateLanguageParameter(languageDTO)){
                 try{
@@ -63,7 +63,7 @@ public class LanguageService extends AbstractService{
         return new Response<>(ErrorMessages.ENTITY_NOT_FOUND);
     }
 
-    public Response<Boolean> delete (String id){
+    public Response<Boolean> deleteById(String id){
         if (Validator.validateID(id)){
             if (this.languageRepository.deleteLanguageById(Long.parseLong(id)) == 1){
                 return new Response<>(Boolean.TRUE);

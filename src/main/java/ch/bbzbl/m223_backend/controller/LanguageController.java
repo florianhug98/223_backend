@@ -24,28 +24,28 @@ public class LanguageController {
 
     @GetMapping(value = "/getAll",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<LanguageDTO>> getAllLanguages(){
+    public ResponseEntity<Response<LanguageDTO>> getALl(){
         return ResponseEntity.ok(this.languageService.getAll());
     }
 
     @PostMapping(value = "/add",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<Boolean>> addLanguage(@RequestBody LanguageDTO languageDTO){
+    public ResponseEntity<Response<Boolean>> add(@RequestBody LanguageDTO languageDTO){
         return ResponseEntity.ok(this.languageService.add(languageDTO));
     }
 
     @PutMapping(value = "/edit",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<Boolean>> updateLanguage(@RequestBody LanguageDTO languageDTO){
+    public ResponseEntity<Response<Boolean>> edit(@RequestBody LanguageDTO languageDTO){
         return ResponseEntity.ok(this.languageService.edit(languageDTO));
     }
 
     @DeleteMapping(value = "/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response<Boolean>> deleteLanguageById(@PathVariable String id){
-        return ResponseEntity.ok(this.languageService.delete(id));
+    public ResponseEntity<Response<Boolean>> deleteById (@PathVariable String id){
+        return ResponseEntity.ok(this.languageService.deleteById(id));
     }
 
     @Autowired
